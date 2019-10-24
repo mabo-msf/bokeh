@@ -816,6 +816,9 @@ class Serve(Subcommand):
             find_autoreload_targets(args.files[0])
             add_optional_autoreload_files(args.dev)
 
+        server_kwargs['websocket_ping_interval'] = 5
+        server_kwargs['websocket_ping_timeout'] = 15
+
         with report_server_init_errors(**server_kwargs):
             server = Server(applications, **server_kwargs)
 
